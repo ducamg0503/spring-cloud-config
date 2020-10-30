@@ -1,6 +1,8 @@
+
 spring:
   profiles:
     active: dev
+
 ---
 server:
   port: 8002
@@ -26,6 +28,39 @@ mybatis:
 eureka:
   instance:
     instance-id: provider-web-8002 # 服务名
+  client:
+    service-url:
+      defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7004.com:7004/eureka/
+#自定义info
+info:
+    author: Dk
+    company: Ducamgold
+   
+---
+server:
+  port: 8003
+spring:
+  application:
+    name: provider-web-8003
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/db02?characterEncoding=utf-8&serverTimezone=GMT%2B8
+      username: root
+      password: ducamgold
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  profiles: test
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/mapper-*.xml
+  type-aliases-package: cn.ducam.pojo
+eureka:
+  instance:
+    instance-id: provider-web-8003 # 服务名
   client:
     service-url:
       defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7004.com:7004/eureka/
