@@ -1,0 +1,39 @@
+spring:
+  profiles:
+    active: dev
+ 
+---
+
+eureka:
+  instance:
+    hostname: eureka7002.com  #主机名
+  client:
+    register-with-eureka: false  #是否注册自己
+    fetch-registry: false
+    eureka-server-port: 7002  #eureka端口号
+    service-url:
+      defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7004.com:7004/eureka/
+  server:
+    peer-node-read-timeout-ms: 3000
+server:
+  port: 7002
+spring:
+  profiles: dev
+
+---
+
+eureka:
+  instance:
+    hostname: eureka7003.com  #主机名
+  client:
+    register-with-eureka: false  #是否注册自己
+    fetch-registry: false
+    eureka-server-port: 7003  #eureka端口号
+    service-url:
+      defaultZone: http://eureka7003.com:7003/eureka/,http://eureka7004.com:7004/eureka/
+  server:
+    peer-node-read-timeout-ms: 3000
+server:
+  port: 7003
+spring:
+  profiles: test
